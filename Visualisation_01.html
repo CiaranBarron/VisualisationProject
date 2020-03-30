@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <title> Ciaran Barron - Assignment</title>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <table style="width: 850px;" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+                    <td style="vertical-align: top;">Ciaran Barron</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+                    <td style="vertical-align: top;">14312451</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+                    <td style="vertical-align: top;"> YOUR DATA SET DESCRIPTION HERE
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+                    <td style="vertical-align: top;">YOUR INITIAL QUESTIONS HERE</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="vis"></div>
+        <hr />
+        <table style="width: 850px;" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;   </strong></td>
+                    <td style="vertical-align: top;">YOUR GRAPH DESCRIPTION HERE</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><strong>Insight:</strong></td>
+                    <td style="vertical-align: top;">YOUR INSIGHT HERE</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+                    <td style="vertical-align: top;">YOUR DESIGN CONSIDERATIONS HERE</td>
+                </tr>
+                <tr>
+                    <td style="width: 200px; vertical-align: top;"><strong>Data filtering and   transformation:&nbsp;</strong></td>
+                    <td style="vertical-align: top;">YOUR DATA FILTERING AND TRANSFORMATION HERE</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+    
+<!-- Vega-lite visualisation JS script -->
+<script type="text/javascript">
+var yourVlSpec =  {
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+      "url": "https://raw.githubusercontent.com/CiaranBarron/VisualisationProject/master/V1Dataset.csv",
+      "format": {"type": "csv"}
+  },
+  "title": {
+      "text": "Backers of succesful projects",
+      "anchor": "start",
+      "fontSize": 24,
+      "offset": 20
+  },
+  "transform":[
+    
+  ],
+  "vconcat":[
+    {
+      "selection": {
+        "cat": {
+          "type": "single", 
+          "fields": ["main_category"], 
+          "bind":"legend",
+          "on": "click", 
+          "clear": "dblclick"
+        }
+      },
+      "width":800,
+      "height":400,
+      "mark": {"type":"area", "tooltip":{"content":"encoding"}},
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "deadline",
+          "type": "temporal",
+          "axis": {
+            "title":"Date", 
+            "format": "%m/%Y",
+            "grid":false
+          }
+        },
+        "y": {
+          "aggregate":"sum",
+          "field": "backers",
+          "type": "quantitative",
+          "axis": {
+            "title":"Total Backers",
+            "grid": false
+          }
+
+        },
+        "color":{
+          "field":"main_category",
+          "title":"Category",
+          "type":"nominal",
+          "scale": {"scheme": "tableau20"}
+        },
+        "opacity": {
+          "condition": {"selection": "cat", "value": 0.9},
+          "value": 0.2
+        }
+      }
+    },
+    {
+      "selection": {
+        "cat": {
+          "type": "single", 
+          "fields": ["main_category"], 
+          "bind":"legend",
+          "on": "click", 
+          "clear": "dblclick"
+        }
+      },
+      "width":800,
+      "height":150,
+      "mark": {"type":"area"},
+      "encoding":{
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "deadline",
+          "type": "temporal",
+          "axis": {
+            "title":"Date", 
+            "format": "%m/%Y",
+            "grid":false
+          }
+        },
+        "y":{
+          "aggregate":"sum",
+          "field": "backers",
+          "type": "quantitative",
+          "stack":"normalize",
+          "axis": {
+            "title":"Market Share (Normed)",
+            "grid": false
+          }
+        },
+        "color":{
+          "field":"main_category",
+          "title":"Category",
+          "type":"nominal",
+          "scale": {"scheme": "tableau20"}
+        },
+        "opacity": {
+          "condition": {"selection": "cat", "value": 0.9},
+          "value": 0.2
+        }        
+      }
+    }
+  ],
+  "config": {
+    "legend": {
+      "titleFontSize": 18,
+      "labelFontSize": 15
+    }
+  }
+}
+vegaEmbed("#vis", yourVlSpec);
+</script>
+</html>
