@@ -18,9 +18,9 @@ This repository contains all data sets and files related to the COMP40140 explor
 
 - HTML files
 
-	Visualisation\_01.html ()
-	Visualisation\_02.html ()
-	Visualisation\_03.html ()
+	- Visualisation\_01.html ()
+	- Visualisation\_02.html ()
+	- Visualisation\_03.html ()
 
 - Python Notebooks
 
