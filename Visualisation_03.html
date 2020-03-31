@@ -1,0 +1,180 @@
+<html>
+  <head>
+    <title> Ciaran Barron - Assignment</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+    <style>
+      body {
+      font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <table style="width: 850px;" cellspacing="5" cellpadding="5">
+      <tbody>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+          <td style="vertical-align: top;">Ciaran Barron</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+          <td style="vertical-align: top;">14312451</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+          <td style="vertical-align: top;">
+            <table>
+              <tbody>
+                <tr>
+                  <td style="width:100px">Main dataset</td>
+                  <td>
+                    <a href="https://www.kaggle.com/kemical/kickstarter-projects/data#ks-projects-201801.csv">Kickstarter 2018 Data</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Data subset</td>
+                  <td>
+                    <a href="https://raw.githubusercontent.com/CiaranBarron/VisualisationProject/master/V3Dataset.csv">Visualisation 3 dataset</a>
+                    contains the goal, backers, state, deadline, launched, usd_pledged_real columns from the original dataset. 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+          <td style="vertical-align: top;">
+            The core questions behind this visualisation is:
+            <br>
+            <ul>
+              <li>How does the level of support required to fund a kickstarter project vary as the size of the project varies?</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <div id="vis"></div>
+    <hr />
+    <table style="width: 850px;" cellspacing="5" cellpadding="5">
+      <tbody>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;   </strong></td>
+          <td style="vertical-align: top;">
+						The above visualisation makes use of a scatter plot and basic interactivity in vega lite to show the success rates of projects in terms of no. of backers and initial funding targets (goal). The plot shows three points for each goal amount. The goal amounts have been binned to decrease the density, and therefore improve clarity, of the graph. These points indicate two things.<br>
+						<ol>
+							<li>Was the project succesful in reaching their goal?</li>
+							<li>What number of backers was required to reach this target?</li>
+						</ol>  
+						The number of backers is taken as an average of all projects, corresponding to each state, which fit into the associated range of intial targets. The three states, successful, failed, and live, indicate the outcome, or current progress, associated with each point on teh graph. The data can be selected by state by clicking on the legend, and higher goal amounts (up to $1000000) can be seen by clicking and dragging the graph horizontally. The x-axis has been scaled to show $1k steps and the y-axis is un-altered. 
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Insight:</strong></td>
+          <td style="vertical-align: top;">
+					There are a number of insights into the kickstarter dataset, and hence kickstarter projects, which can be gained from the above visualisation. The color coding of each point allows us to see instantly that projects with low support, regardless of funding goals, will likely fail. Looking closely at the points in the range (0, $50000] indicates that the relationship between goals and no.backers is approximately linear. This would imply that for lower value project most backers would contribute approximately the same amount towards backing the project, and that main model behind these project is a crowdsourcing approach. <br><br>
+						
+					As the goal figure increases, however, we begin to see this linear relationship deteriorate. While there is still a clear correlation between the goal and the number of backers required to fund it, the graph also shows that high value contributions begin to exceed low value contributions as the main source of funding for a project. If you scroll out on the graph, an "L" shape begins to emerge showing extremely high funding projects relying, almost exclusively, on a small number of backers making high value contributions for successful projects. <br><br>
+						
+					If you look at the projects which failed to gain the necessary support, you can also see a new trend emerging as the goal amount increases. Projects which have a reasonably large number of backers may still fail when the sum required is large. The upper bound on this increasing ratio could be interprested as showing a threshold number of small-scale supporters needed for a project to be succesful, while also demonstrating the "skewing" effect that large-scale backers have on the correlation of the graph as a whole. <br><br>
+						
+					Finally, looking at the live state figures provides and indication of the progress of a project at the lower end of the goal scale, but cannot be same to do the same for higher values. As this graph does not consider the length of time for which the project has been active, this prediction should not be used without first checking the launch date of the project. 
+					</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+          <td style="vertical-align: top;">
+					I have choosen to use a scatter plot as they show clearly the correlation between two quantative variables. The colouring points based on project state allows us to see how these correlations differ for succcseful and unsuccessful projects. The variable x-axis allows us to focus in on trends present within the dataset that would otherwise be obsured/ hidden. The use of mean average no. of backers, over median, allows us to include the variations, and outliers, present in the dataset. Normally it is desirable to remove outliers, however, doing so in this scenario would result in the loss of information pointed out above, such shift in model from crowdsourcing to patronage as the project goal captial increases. <br><br>
+						
+					Initially, I considered a stacked barchart for displaying this data, but the trends present in the data were lost using such a visualisation. The replacement of the circles in the above graph would allow us to see the variance associated with each average, and provide a better approximation of the relationship between the goal and #backers, but would reduce the clarity of the graph significantly given the density of points as it. This could be solved by increasing the bin width, but that would result in the loss of trends seen within smaller areas. (such as 0-$50k).<br><br>
+						
+					I think it would be benifical to apply a small multiples approach to this and separate different categories of project into their won separate graph. This would allow us to determine whether, for example, the large donations were focused on art or theater performances, as opposed to small technology based projects. This does have the drawback of losing clarity as each graph is now much smaller. A possible way around this would be to use a similar filter as was used in visualisation two to separate each graph with a dropdown select menu. 
+					</td>
+        </tr>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+          <td style="vertical-align: top;">
+					As the dataset for kickstarter information is quite large, some minor pre-processing was done in python. This consisted of splitting the data to select only columns which were intended to be included in the above visualisation. In this case that meant cutting a dataframe to select only the goal, backers, state, deadline, launched, usd_pledged_real columns.<br><br>
+					
+					In vega lite a number of transforms and filter were applied. The first transformations applied were filters to select only projects in the succesful, failed and live states. This removed all project currently suspended or in undefined states. The reason for this was to reduce the amount of data which obscured the underlying trends needed to answer the question posed at the top of this page. The goal amounts have been divided by 100 to make the axes more readable. The number of backers has been aggreagted and averaged based on the size of the goal associated with the project. This was done with the aggregation framework in vega-lite.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+    
+<!-- Vega-lite visualisation JS script -->
+<script type="text/javascript">
+var yourVlSpec =  
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+      "url": "https://raw.githubusercontent.com/CiaranBarron/VisualisationProject/master/V3Dataset.csv",
+      "format": {"type": "csv"}
+  },
+  "title": {
+      "text": "Support required to fund a project",
+      "anchor": "middle",
+      "fontSize": 24,
+      "offset": 20
+  },
+  "width":800,
+  "height":500,  
+  "selection": {
+    "grid": {
+      "type": "interval", "bind": "scales"
+    },
+    "state": {
+      "type":"multi", 
+      "fields": ["state"], 
+      "bind":"legend"
+    }
+  },
+  "transform":[
+    {
+      "filter":{
+        "and":[
+          {"or": [
+            "datum.state == 'successful'",
+            "datum.state == 'failed'",
+            "datum.state == 'live'"
+            ]
+          },
+        "datum.goal < 1000000"
+        ]
+      }
+    },
+    {"calculate":"datum.goal/1000", "as":"goal"}
+  ],
+  "mark":{"type":"circle", "tooltip":{"content":"encoding"}},
+  "encoding":{
+    "x":{
+      "bin":{"steps":[1, 2, 5, 10, 20], "maxbins":200},
+      "field":"goal",
+      "type":"quantitative",
+      "scale": {"domain":[0,250]},
+      "axis":{
+        "title":"Goal ($1k)",
+				"tickMinStep":10
+      }
+    },
+    "y":{
+      "aggregate":"mean",
+      "field":"backers",
+      "type":"quantitative",
+      "scale":{"domain":[0,6000]},
+      "axis":{
+        "title":"Average No. Backers"
+      }
+    },
+    "color":{"field":"state", "type": "nominal"},
+    "opacity":{
+        "condition":{"selection":"state", "value": 1},
+      	"value":0.4
+    }
+  }
+}
+vegaEmbed("#vis", yourVlSpec);
+</script>
+</html>
