@@ -1,70 +1,111 @@
 <html>
-    <head>
-        <title> Ciaran Barron - Assignment</title>
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
-        <style>
-            body {
-                font-family: sans-serif;
-            }
-					select {
-						margin-left: 20px;
-						border: 1px solid #000000;
-						border-radius: 1px;
-						overflow: hidden;
-						padding: 3px 3px
-					}
-					
-        </style>
-    </head>
-    <body>
-        <table style="width: 850px;" cellspacing="5" cellpadding="5">
-            <tbody>
+  <head>
+    <title> Ciaran Barron - Assignment</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+    <style>
+      body {
+      font-family: sans-serif;
+      }
+      select {
+      margin-left: 20px;
+      border: 1px solid #000000;
+      border-radius: 1px;
+      overflow: hidden;
+      padding: 3px 3px
+      }
+    </style>
+  </head>
+  <body>
+    <table style="width: 850px;" cellspacing="5" cellpadding="5">
+      <tbody>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+          <td style="vertical-align: top;">Ciaran Barron</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+          <td style="vertical-align: top;">14312451</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+          <td style="vertical-align: top;">
+            <table>
+              <tbody>
                 <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
-                    <td style="vertical-align: top;">Ciaran Barron</td>
+                  <td style="width:100px">Main dataset</td>
+                  <td>
+                    <a href="https://www.kaggle.com/kemical/kickstarter-projects/data#ks-projects-201801.csv">Kickstarter 2018 Data</a>
+                  </td>
                 </tr>
                 <tr>
-                    <td style="vertical-align: top;"><strong>Student Number:</strong></td>
-                    <td style="vertical-align: top;">14312451</td>
+                  <td>Data subset</td>
+                  <td>
+                    <a href="https://raw.githubusercontent.com/CiaranBarron/VisualisationProject/master/V1Dataset.csv">Visualisation 2 dataset</a>
+                    contains the currency, deadline, usd_pledged_real columns from the original dataset. 
+                  </td>
                 </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
-                    <td style="vertical-align: top;"> YOUR DATA SET DESCRIPTION HERE
-                    </td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
-                    <td style="vertical-align: top;">YOUR INITIAL QUESTIONS HERE</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr />
-        <div id="vis"></div>
-        <hr />
-        <table style="width: 850px;" cellspacing="5" cellpadding="5">
-            <tbody>
-                <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;   </strong></td>
-                    <td style="vertical-align: top;">YOUR GRAPH DESCRIPTION HERE</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Insight:</strong></td>
-                    <td style="vertical-align: top;">YOUR INSIGHT HERE</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Design considerations</strong></td>
-                    <td style="vertical-align: top;">YOUR DESIGN CONSIDERATIONS HERE</td>
-                </tr>
-                <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Data filtering and   transformation:&nbsp;</strong></td>
-                    <td style="vertical-align: top;">YOUR DATA FILTERING AND TRANSFORMATION HERE</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
-    
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+          <td style="vertical-align: top;">
+            The core questions behind this visualisation are:
+						<ul>
+							<li>How has kickstarter grown over the years? (2010 - 2018)</li>
+							<li>What currencies are most used in kickstarter campaigns?</li>
+							<li>What regions has kickstarter grown the most in?</li>
+						</ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <div id="vis"></div>
+    <hr />
+    <table style="width: 850px;" cellspacing="5" cellpadding="5">
+      <tbody>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;   </strong></td>
+          <td style="vertical-align: top;">
+						The above visualisation makes use of a scatter plot and basic interactivity in vega lite to show growth of kickstarter, in terms of money pledged, and given, to successful kickstarter projects between 2010 and 2018. The graph is a composite of a bar chart and line graph layered on top of one another to show the cumulative contributions to kickstarter over this period, and the contributions made during each month of the same period. The line chart is scaled linearly and the bar chart hs been log scaled. <br><br>
+						
+						Each axis label is colour coded to indicate which feature it corresponds to (blue for bar chart, orange for line), and a dropdown menu allows the viewer to filter the results by curreny. E.g show the contributions from EUR or GBP only. Hovering over any bar/point on the line will show the data corresponding to the bar/point. A step line has been used rather than a basic linear join.  
+					</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Insight:</strong></td>
+          <td style="vertical-align: top;">
+						This visualisation provides a number of insights into the questions posed above. The trend line shows clearly the growth of kickstarter in terms of actual contributuions to projects worldwide, as well as the rate of growth and timing of when this growth occurred. It allows the user to easily identify speciic months where the growth of kickstarter was high, and even determine when they should set the deadline for their own kickstarte campaign based on this (slight ARIMAX time series variation can be seen in the changing height of the bar chart showing increased gorwth (funding) during the january months). However, it is likely that this is due to a large number of projects electing to set their deadline for the end of the year. The graph shows a huge initial growth between 2010 and 2013 and then this growth begins to settle into a linear trend from 2013 to 2017, then level off in 2018. <br><br>
+						
+						The currency selection tool allows the user to see which currencies are being traded on the site, ad hence where the most growth is taking place. Countries in which very little to no growth took place were filtered out of this list as they provided little to no information beyond this point. From looking at each of these graphs, it is clear that the US is where the most growth is taking place. By 2018 the cumulative contributions in USD totalled almost 2.6 billion dollars, an order of magnitude higher that the contributions using any other currency. However, in 2018 this did hit a plateau as the monthly additions began to fall. In fact, the only currency which saw an increase in contributions during 2018 was the HKD. This indicated that the kickstarter model is growing rapidly in hong kong.
+						
+					</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+          <td style="vertical-align: top;">
+						Initially I had intended this visualisation to show the contirbutions on a country by county basis, and planned to project the values onto a map and show differences with a colour gradient. However, the above visualisation has the advantage of allowing for an additional trendline to be shown tranksing overall contribtuions through time aswell as monthly contributions. This added an extra dimension of information to the visualisation, while also making it clearer and reducing the time to read the graph. The dropdown menu allows for selection of specific currencies, which in turn correspond to different countries (almost directly).<br><br>
+						
+						I also considered a vertical concatenation of two graphs (as in V1) but decided that the overlay of the line on the bar charts leaded more easily to the connection between the height of the bar and the increase in step seen. I initially had a regular, linear, trendline joining points equivalent to the cumulative sum, centred above the month, but the linear increase/decrease between adjacent points implied a linear distribution of contributions throughout the month. For this reason I decided to use a stepped line for the final visualisation. The decision to log scale the bar chart axis was bsaed on the relative difference between the values pledged each month and the cumulative contributions. When scaled linearly the bar chart is not discernable.<br><br>
+						
+						While the ability to filter by currency is benificial, a drawback is that an option to revert back to the global chart is not available. Instead the page must be reloaded. Also, I think that the clarity of this chart would benefit from the addition of a legend, even thought the axis labels are colour coordinated. Finally, A small multiples approach could have been applied to render all charts simultaneously, but this would be at the cost of clarity and so the dropdown select option was chosen.
+					</td>
+        </tr>
+        <tr>
+          <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+          <td style="vertical-align: top;">
+						As the dataset for kickstarter information is quite large, some minor pre-processing was done in python. This involved the selection of a subset of the CSV containing the currency, deadline, usd_pledged_real columns from the original dataset. This dataset was then filtered to only contain projects which were in the live/succesful state. All associated python code is in the same github repository as the CSV files used for each individual visualisation. All other transformations and filtering was performed in vega-lite.<br><br>
+						
+						In vega-lite, the transform framework was used to power the currency filter, with a selection, and to aggregate the values used for both the trendline and barchart underneath. The pledged amount was firstly aggregated by day and grouped by yearmonth. Then the data was sorted by date and a window was used to calculate the cumulative sum. 
+					</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 <!-- Vega-lite visualisation JS script -->
 <script type="text/javascript">
 var yourVlSpec =  
@@ -84,7 +125,7 @@ var yourVlSpec =
   "height":400,
   "layer":[{
     "selection": {
-      "filter_by": {
+      "select": {
         "type": "single",
         "fields": ["currency"],
         "bind": {
@@ -104,7 +145,7 @@ var yourVlSpec =
       }
     },
     "transform": [{
-      "filter":{"selection":"filter_by", "field":"currency"}
+      "filter":{"selection":"select", "field":"currency"}
     }],
     "mark":{"type":"bar", "tooltip":{"content":"encoding"}},
     "encoding": {
@@ -125,17 +166,18 @@ var yourVlSpec =
         "scale":{"type":"log"},
         "axis": {
           "title":"Amount pledged ($)",
-          "color":"blue",
+          "titleColor":"rgb(49, 130, 189)",
           "grid": false
         }
       },
+      "color":{"value":"rgb(49, 130, 189)"},
       "opacity": {
         "value": 0.8
       }
     }
   }, {
     "transform": [{
-      "filter":{"selection":"filter_by", "field":"currency"}
+      "filter":{"selection":"select", "field":"currency"}
     }, {
       "aggregate": [{"op": "sum", "field":"usd_pledged_real", "as": "daily_sum"}],
       "groupby": ["deadline"]
@@ -152,22 +194,16 @@ var yourVlSpec =
         "type":"quantitative",
         "axis": {
           "title":"Cumulative Pledged ($)",
-          "grid": false
+          "grid": false,
+          "titleColor":"rgb(245, 133, 24)"
         }
       },
-      "color":{"value":"red"}
+      "color":{"value":"rgb(245, 133, 24)"}
     } 
   }
   ],
   "resolve": {
-    "scale": { "y": "independent"},
-    "legend": {"shared":true}
-  },
-  "config": {
-    "legend": {
-      "titleFontSize": 18,
-      "labelFontSize": 15
-    }
+    "scale": { "y": "independent", "color": "independent"}
   }
 }
 vegaEmbed("#vis", yourVlSpec);
