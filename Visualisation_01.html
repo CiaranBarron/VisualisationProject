@@ -1,61 +1,114 @@
 <html>
-    <head>
-        <title> Ciaran Barron - Assignment</title>
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
-        <style>
-            body {
-                font-family: sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-        <table style="width: 850px;" cellspacing="5" cellpadding="5">
-            <tbody>
-                <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
-                    <td style="vertical-align: top;">Ciaran Barron</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Student Number:</strong></td>
-                    <td style="vertical-align: top;">14312451</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
-                    <td style="vertical-align: top;"> YOUR DATA SET DESCRIPTION HERE
-                    </td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
-                    <td style="vertical-align: top;">YOUR INITIAL QUESTIONS HERE</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr />
-        <div id="vis"></div>
-        <hr />
-        <table style="width: 850px;" cellspacing="5" cellpadding="5">
-            <tbody>
-                <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;   </strong></td>
-                    <td style="vertical-align: top;">YOUR GRAPH DESCRIPTION HERE</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Insight:</strong></td>
-                    <td style="vertical-align: top;">YOUR INSIGHT HERE</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;"><strong>Design considerations</strong></td>
-                    <td style="vertical-align: top;">YOUR DESIGN CONSIDERATIONS HERE</td>
-                </tr>
-                <tr>
-                    <td style="width: 200px; vertical-align: top;"><strong>Data filtering and   transformation:&nbsp;</strong></td>
-                    <td style="vertical-align: top;">YOUR DATA FILTERING AND TRANSFORMATION HERE</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+<head>
+	<title> Ciaran Barron - Assignment</title>
+	<script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<table style="width: 1000px;" cellspacing="5" cellpadding="5">
+		<tbody>
+			<tr>
+				<td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+				<td style="vertical-align: top;">Ciaran Barron</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;"><strong>Student Number:</strong></td>
+				<td style="vertical-align: top;">14312451</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+				<td style="vertical-align: top;"> 
+					<table>
+						<tbody>
+							<tr>
+								<td style="width:100px">Main dataset</td>
+								<td>
+									<a href="https://www.kaggle.com/kemical/kickstarter-projects/data#ks-projects-201801.csv">Kickstarter 2018 Data</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Data subset</td>
+								<td>
+									<a href="https://raw.githubusercontent.com/CiaranBarron/VisualisationProject/master/V1Dataset.csv">Visualisation 1 dataset</a>
+									contains the main_category, currency, deadline, backers and usd_pledged_real columns from the original dataset. 
+								</td>
+							</tr>
+						</tbody>
+					</table>				
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;"><strong>Initial questions</strong></td>
+				<td style="vertical-align: top;">
+				The core questions behind this visualisation are:
+				<ul>
+					
+					<li>What categories are the most projects funded in? i.e. What category should I choose to get my project funded?</li>	
+					<li>What is the market share of each category?</li>
+					<li>How has support for different categories evolved over time?</li>
+	
+				</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr />
+	<div id="vis"></div>
+	<hr />
+	<table style="width: 1000px;" cellspacing="5" cellpadding="5">
+		<tbody>
+			<tr>
+				<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+				<td style="vertical-align: top;">
+					The visualisation shown above is a vertical concatenation of two linked area charts. They show the distribution, and change, of support for kickstarter projects separated by category. The metric used for judging support is the number of backers, rather than the amount pledged. The number of backers is summed to give the total number of backers on a given date. These numbers can be seen by hovering over the graph. The graph allows interactive higlighting to focus on a given category. Categories can be selected throught clicking either the graph of the legend. Selections on either graph will also be highlighted in the other graph. <br><br>
+					
+					The bottom graph shows the market share of each category on a given date. The areas graph allows the reader to see the evolution of the market share of each category between 2010 and 2018. The mnarket share has been normalised from 0 to 1, as opposed to a percentage. The x-axes are identical for the top and bottom graphs but have been provided on both to avoid confusion. 
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;"><strong>Insight:</strong></td>
+				<td style="vertical-align: top;">
+				This visualisation provides a number of insights into the questions posed above, and the kickstarter dataset in general. 
+				Firstly, it can be clearly seen that currently the games, Fashion & Design, and Technology categories dominate the market on kickstarter, in terms of support by backers. However, this was not always the case. From examining the market share graph (bottom), it can be seen that Music and "Art, comics & crafts" category shared the majority of early support on kickstarter. From the top graph, we can see that this was at a time when usership on kickstarter was low, and the total number of backers was less than 5% of the peak number of users (late 2016). The film & video category also boasted a large market share in the early days of kickstarter but recently has fallen significantly to below 3% as of late 2017 (fallen from ~20% in 2011).<br><br>
+					
+				Interestingly, publishing and journalism category seems to have maintained its chare of the market throughout the period in question, granted it is a small share ( less than 10%), but no other category has been as consistent in the percentage of backers supporting it. The levels of support for pojects, when divided by category, seem to vary wildly over the course of the 8 years. Having said this, none of these changes are unexpected. The games and technology sectors in general have seen increases parallel to the ones shown here. Interestingly these sectors appears to peak massively at the end of each year, liekly due to deadlines for game/tech releases. The fashion and design market on kickstarter appears to have grown significantly with a consistent increase in market share over the period in question. Finally, the end of the graph shows a massive decline in backers for all project cateogries. This is down to the design of the graph. As this graph does not include live projects (as of the time the dataset was issued), very few of the backers over that period have been included. 
+					
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;"><strong>Design considerations</strong></td>
+				<td style="vertical-align: top;">
+					When designing this visualisation I first considered a stacked bar chart but found the area chart far more readable, particularly when atempting to discern trends such as the market share. I had also considered a horizontal bar chart but found that I lost the date information in the bottom graph by using it. The metric used for judging support is the number of backers, as opposed to the amount pledged. This is to account for large donations, which while entirely valid are not reflective of market share in terms of site users on a crowdfunding website. for the top graph I also considered overlapping gradient area charts, but again found that overall readability and clarity was decreased by using such a design. <br><br>
+					
+					I also considered a small multiples frameowrk and a streamgraph for displaying the above information but in both cases found the loss in clarity to outweight the benefits of this presentation. Having said that, I think the clarity could be improved through the addition of another vertically stacked chart which shows only the selected area chart when a category is selected. This would provide a flat base and make the changes more apparent than the current setup. 
+					
+					<br><br><i>reference material:  https://vega.github.io/vega-lite/examples/interactive_seattle_weather.html</i>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 200px; vertical-align: top;"><strong>Data filtering and   transformation:&nbsp;</strong></td>
+				<td style="vertical-align: top;">
+					As the dataset for kickstarter information is quite large, some minor pre-processing was done in python. This involved the selection of a subset of the CSV containing the ain_category, currency, deadline, backers and usd_pledged_real columns from the original dataset. Only succesful project were selected and as there were a large number of categories I joined multiple together as stated above. This was done in python before uploading the dataset. This involved joining the categories to create the following composite catgories:
+					<ul>
+					<li>'Fashion' & 'Design'</li>
+					<li>'Dance' & 'Theater'</li>
+					<li>'Publishing' & 'Journalism'</li>
+					<li>'Art', 'Comics' & 'Crafts'</li>
+					</ul>
+					All other transformations and filtering was performed in vega-lite. These consisted of aggregation operations on the backers column and grouping by date to generate the graphs shown above. The selection tool was used to adde the highlighting effects to the graphs. 
+
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
     
 <!-- Vega-lite visualisation JS script -->
 <script type="text/javascript">
@@ -67,14 +120,11 @@ var yourVlSpec =  {
       "format": {"type": "csv"}
   },
   "title": {
-      "text": "Backers of succesful projects",
+      "text": "Distribution of support across categories",
       "anchor": "start",
       "fontSize": 24,
       "offset": 20
   },
-  "transform":[
-    
-  ],
   "vconcat":[
     {
       "selection": {
